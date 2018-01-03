@@ -288,8 +288,8 @@ public class StompClientLib: NSObject, SRWebSocketDelegate {
             // Response
             if let delegate = delegate {
                 DispatchQueue.main.async(execute: {
-                     delegate.stompClient(client: self, didReceiveMessageWithJSONBody: self.dictForJSONString(jsonStr: body),
-                                          withHeader: headers, withDestination: self.destinationFromHeader(header: headers))
+//                     delegate.stompClient(client: self, didReceiveMessageWithJSONBody: self.dictForJSONString(jsonStr: body),
+//                                          withHeader: headers, withDestination: self.destinationFromHeader(header: headers))
                     // Send as a String JSON Body
                      delegate.stompClientJSONBody(client: self, didReceiveMessageWithJSONBody: body, withHeader: headers, withDestination: self.destinationFromHeader(header: headers))
                 })
@@ -303,7 +303,7 @@ public class StompClientLib: NSObject, SRWebSocketDelegate {
                     })
                 }
             }
-        } else if command.characters.count == 0 {
+        } else if command.count == 0 {
             // Pong from the server
             socket?.send(StompCommands.commandPing)
             
